@@ -29,7 +29,13 @@ fi
 cp -rf OpenClash/luci-app-openclash package/luci-app-openclash
 
 # 添加UA2F
-git clone https://github.com/Zxilly/UA2F.git package/UA2F
+if [ -d "package/UA2F" ]; then
+    cd package/UA2F
+    git pull
+    cd ../../
+else
+    git clone https://github.com/Zxilly/UA2F.git package/UA2F
+fi
 
 # 更新queue
 git clone --depth=1 https://github.com/openwrt/packages
