@@ -63,8 +63,15 @@ jobs:
       working-directory: /workdir
       run: |
         df -hT $PWD
-        git clone $REPO_URL -b $REPO_BRANCH openwrt
-        ln -sf /workdir/openwrt $GITHUB_WORKSPACE/openwrt
+        if [ -d "$GITHUB_WORKSPACE/openwrt" ]; then
+          echo "Repository directory exists. Updating..."
+          cd "$GITHUB_WORKSPACE/openwrt"
+          git pull
+        else
+          echo "Repository directory does not exist. Cloning..."
+          git clone $REPO_URL -b $REPO_BRANCH "$GITHUB_WORKSPACE/openwrt"
+          ln -sf /workdir/openwrt $GITHUB_WORKSPACE/openwrt
+        fi
 
     - name: Load custom feeds
       run: |
