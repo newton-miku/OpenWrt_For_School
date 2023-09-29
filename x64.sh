@@ -1,21 +1,14 @@
 #!/bin/bash
-###
-# @Author: newton_miku 1316561519@qq.com
-# @Date: 2023-09-28 14:03:36
-# @LastEditors: newton_miku 1316561519@qq.com
-# @LastEditTime: 2023-09-29 19:16:29
-# @FilePath: \UA2F_Build\x64.sh
-# @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
-###
 
 # 添加SSRP+
-# echo "src-git helloworld https://github.com/fw876/helloworld.git" >> feeds.conf.default
+sed -i "/helloworld/d" "feeds.conf.default"
+echo "src-git helloworld https://github.com/fw876/helloworld.git" >>"feeds.conf.default"
 
 # 添加iStore
 echo >>feeds.conf.default
 echo 'src-git istore https://github.com/linkease/istore;main' >>feeds.conf.default
-./scripts/feeds update istore
-./scripts/feeds install -d y -p istore luci-app-store
+# ./scripts/feeds update istore
+# ./scripts/feeds install -d y -p istore luci-app-store
 
 # 添加OpenClash
 if [ -d "OpenClash" ]; then
