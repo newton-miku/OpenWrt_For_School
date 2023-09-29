@@ -23,7 +23,7 @@ if [ -d "OpenClash" ]; then
     cd OpenClash
     git pull
 else
-    git clone https://github.com/vernesong/OpenClash.git
+    git clone --depth=1 https://github.com/vernesong/OpenClash.git
 fi
 cp -rf OpenClash/luci-app-openclash package/luci-app-openclash
 
