@@ -31,7 +31,7 @@ cp -rf OpenClash/luci-app-openclash package/luci-app-openclash
 git clone https://github.com/Zxilly/UA2F.git package/UA2F
 
 # 更新queue
-git clone https://github.com/openwrt/packages
+git clone --depth=1 https://github.com/openwrt/packages
 rm -rf package/libs/libnetfilter-queue
 cp -rf packages/libs/libnetfilter-queue package/libs/
 

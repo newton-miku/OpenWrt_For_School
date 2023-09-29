@@ -70,7 +70,7 @@ jobs:
           git pull
         else
           echo "Repository directory does not exist. Cloning..."
-          git clone $REPO_URL -b $REPO_BRANCH "$GITHUB_WORKSPACE/openwrt"
+          git clone --depth=1 $REPO_URL -b $REPO_BRANCH "$GITHUB_WORKSPACE/openwrt"
           ln -sf /workdir/openwrt $GITHUB_WORKSPACE/openwrt
         fi
 
