@@ -16,6 +16,13 @@ fi
 # ./scripts/feeds update istore
 # ./scripts/feeds install -d y -p istore luci-app-store
 
+# 添加small8软件源
+if ! grep -q 'src-git small8 https://github.com/kenzok8/small-package' feeds.conf.default; then
+    echo ' src-git small8 https://github.com/kenzok8/small-package' >>feeds.conf.default
+else
+    echo 'small8源存在，跳过添加'
+fi
+
 # 添加OpenClash
 if [ -d "OpenClash" ]; then
     cd OpenClash
@@ -26,14 +33,14 @@ else
 fi
 cp -rf OpenClash/luci-app-openclash package/luci-app-openclash
 
-# 添加UA2F
-if [ -d "package/UA2F" ]; then
-    cd package/UA2F
-    git pull
-    cd ../../
-else
-    git clone https://github.com/Zxilly/UA2F.git package/UA2F
-fi
+# # 添加UA2F
+# if [ -d "package/UA2F" ]; then
+#     cd package/UA2F
+#     git pull
+#     cd ../../
+# else
+#     git clone https://github.com/Zxilly/UA2F.git package/UA2F
+# fi
 
 # 更新queue
 if [ -d "packages" ]; then
