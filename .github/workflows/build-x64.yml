@@ -63,8 +63,9 @@ jobs:
       working-directory: /workdir
       run: |
         df -hT $PWD
-        if [ -d "$GITHUB_WORKSPACE/openwrt" ]; then
+        if [ -d "/workdir/openwrt" ]; then
           echo "Repository directory exists. Updating..."
+          ln -sf /workdir/openwrt $GITHUB_WORKSPACE/openwrt
           cd "$GITHUB_WORKSPACE/openwrt"
           git pull
         else
