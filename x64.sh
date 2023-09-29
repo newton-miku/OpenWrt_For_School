@@ -22,6 +22,7 @@ fi
 if [ -d "OpenClash" ]; then
     cd OpenClash
     git pull
+    cd ../
 else
     git clone --depth=1 https://github.com/vernesong/OpenClash.git -b master
 fi
@@ -36,6 +37,7 @@ rm -rf package/libs/libnetfilter-queue
 cp -rf packages/libs/libnetfilter-queue package/libs/
 
 # 修改内核设置,不直接全部追加的原因是看起来不舒服
+# echo $PWD
 echo "CONFIG_IP_SET=y" >>target/linux/x86/config-5.4
 echo "CONFIG_IP_SET_HASH_IPPORT=y" >>target/linux/x86/config-5.4
 echo "CONFIG_IP_SET_MAX=256" >>target/linux/x86/config-5.4
