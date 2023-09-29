@@ -36,6 +36,9 @@ else
 fi
 
 # 更新queue
+if [ -d "packages" ]; then
+    rm -rf packages
+fi
 git clone --depth=1 https://github.com/openwrt/packages
 rm -rf package/libs/libnetfilter-queue
 cp -rf packages/libs/libnetfilter-queue package/libs/
