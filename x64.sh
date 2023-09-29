@@ -2,11 +2,19 @@
 
 # 添加SSRP+
 sed -i "/helloworld/d" "feeds.conf.default"
-echo "src-git helloworld https://github.com/fw876/helloworld.git" >>"feeds.conf.default"
+if ! grep -q "src-git helloworld https://github.com/fw876/helloworld.git" feeds.conf.default; then
+    echo "src-git helloworld https://github.com/fw876/helloworld.git" >>"feeds.conf.default"
+else
+    echo "helloworld源存在，跳过添加"
+fi
 
 # 添加iStore
 echo >>feeds.conf.default
-echo 'src-git istore https://github.com/linkease/istore;main' >>feeds.conf.default
+if ! grep -q 'src-git istore https://github.com/linkease/istore;main' feeds.conf.default; then
+    echo 'src-git istore https://github.com/linkease/istore;main' >>feeds.conf.default
+else
+    echo 'istore源存在，跳过添加'
+fi
 # ./scripts/feeds update istore
 # ./scripts/feeds install -d y -p istore luci-app-store
 
