@@ -18,7 +18,7 @@ fi
 
 # 添加small8软件源
 if ! grep -q 'src-git small8 https://github.com/kenzok8/small-package' feeds.conf.default; then
-    echo ' src-git small8 https://github.com/kenzok8/small-package' >>feeds.conf.default
+    echo 'src-git small8 https://github.com/kenzok8/small-package' >>feeds.conf.default
 else
     echo 'small8源存在，跳过添加'
 fi
