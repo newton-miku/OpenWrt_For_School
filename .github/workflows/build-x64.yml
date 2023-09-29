@@ -107,7 +107,14 @@ jobs:
       run: |
         cd openwrt
         make defconfig
-        make download -j8
+        # 获取当前 CPU 核心数量
+        nproc=$(nproc)
+        # 根据 nproc 的值选择不同的命令
+        if [ "$nproc" -lt 8 ]; then
+          make download -j8
+        else
+          make download -j"$nproc"
+        fi
         find dl -size -1024c -exec ls -l {} \;
         find dl -size -1024c -exec rm -f {} \;
 
