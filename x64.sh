@@ -1,7 +1,6 @@
 #!/bin/bash
 
 # 添加SSRP+
-sed -i "/helloworld/d" "feeds.conf.default"
 if ! grep -q "src-git helloworld https://github.com/fw876/helloworld.git" feeds.conf.default; then
     echo "src-git helloworld https://github.com/fw876/helloworld.git" >>"feeds.conf.default"
 else
@@ -9,7 +8,6 @@ else
 fi
 
 # 添加iStore
-echo >>feeds.conf.default
 if ! grep -q 'src-git istore https://github.com/linkease/istore;main' feeds.conf.default; then
     echo 'src-git istore https://github.com/linkease/istore;main' >>feeds.conf.default
 else
