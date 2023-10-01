@@ -1,4 +1,12 @@
 #!/bin/bash
+###
+# @Author: newton_miku 1316561519@qq.com
+# @Date: 2023-09-28 14:03:36
+# @LastEditors: newton_miku 1316561519@qq.com
+# @LastEditTime: 2023-10-01 18:18:33
+# @FilePath: \UA2F_Build\x64.sh
+# @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
+###
 
 # 添加SSRP+
 if ! grep -q "src-git helloworld https://github.com/fw876/helloworld.git" feeds.conf.default; then
@@ -32,6 +40,15 @@ else
     git clone --depth=1 https://github.com/vernesong/OpenClash.git -b master
 fi
 cp -rf OpenClash/luci-app-openclash package/luci-app-openclash
+
+# 添加xmurp-ua
+if [ -d "package/xmurp-ua" ]; then
+    cd package/xmurp-ua
+    git pull
+    cd ../../
+else
+    git clone https://github.com/newton-miku/xmurp-ua.git package/xmurp-ua
+fi
 
 # # 添加UA2F
 # if [ -d "package/UA2F" ]; then
